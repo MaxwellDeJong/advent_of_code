@@ -1,0 +1,7 @@
+# Day 5
+
+## Part 1
+The first part was pretty straightforward. Using the page ordering rules, I created two dictionaries that contained the numbers that cannot appear before and after each of the keys, respectively. Evaluating an update sequence simply involved looping through the numbers in the update and making sure that none of the preceding numbers or succeeding numbers violated the ordering rules.
+
+## Part 2
+I struggled to come up with an efficient solution here. I spent a decent amount of time tonight trying to devise an optimized solution before resorting to a very crude approach. I tried to implement a version of bubble sort that would run in $O(N^2)$ time for an update of length $N$. Unlike a traditional bubble sort, though, there is an asymmetry where the left number can have a condition on the right number that is not reciprocated. Additionally, there are less strong guarantees that the swapped elements are in the correct positions, which further complicated my solution attempt. In the end, I gave up on trying to calculate the change in validity after the swap directly from the rules and instead revalidated the entire update after every swap. So the final version simply looped through the elements and swapped them if required by the rules until the original update was properly reordered. This is certainly not an efficient algorithm, but it does converge to the correct solution.
