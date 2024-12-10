@@ -1,0 +1,7 @@
+# Day 9
+
+## Part 1
+The algorithm for this problem was not too hard, although I did intially get tripped up by not properly handling the file ID number once it became multiple digits. To get around this, I kept the disk map as a list of strings, where each element contained either a file ID number or a free space character. To defragment the uncompressed string, I used two pointers: one to keep track of the the first free space location and one to keep track of the last file block location. The disk map list was easily updated by swapping the characters associated with these two locations.
+
+## Part 2
+The algorithm for this problem was not significantly more complicated, but I did struggle with the accounting a bit. I required a few revisions to arrive at a proper solution. I ended up trying to condense as much of the required calculation as possible into the function that uncompresses the dense disk representation since I already had to iterate over the dense disk string. By keeping track of the initial index of each file ID as well as the number of repetitions, I could avoid relying on negative indices too heavily, which can be ripe for bugs. The updated algorithm was similar to before, except now I iterated over entire files right-to-left. I still looped over free blocks from left-to-right, and swapped the contents if a sufficiently large free block was found. I also kept track of the index of the first free block to minimize unnecessary looping.
