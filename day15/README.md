@@ -1,0 +1,8 @@
+# Day 15
+Well I finally fell behind. I had a very busy Sunday which prevented me from finishing both parts, and then I ended up working pretty late on Monday. I don't think I can make up the lost pace with a new question released every day with my existing committments.
+
+## Part 1
+My solution to the first part was fairly straightforward. For each move, I first checked if it was a legal move. If so, I calculated which blocks would need to change and updated them in place on the map. Then after the final move, I iterated through all of the blocks to calculate their GPS score contribution.
+
+## Part 2
+I initially tried to use the same approach of using the map directly and updating it, but I ran into accounting issues keeping track of all of the blocks to move and also the locations that previously contained blocks. To remedy these issues, I introduced the abstraction of a block, which was a simple container for the left and right position locations. This made consistent modifications to the map much easier. For the algorithm, the horizontal movements were handled in a very similar manner as before. But with vertical movements involving an existing block, all of the blocks neighboring that block were first calculated. The validity of the move was checked for all of the neighboring blocks, which were then updated if the move was legal. Truthfully, the solution ended up being a bit ugly, since I wanted to reuse much of the existing code, which operated on the rendered map rather than any abstractions. The result was a bit messy and certainly not performant, since the map was rerendered from the list of blocks many times. But the solution was able to calculate the solution still relatively quickly.
