@@ -11,9 +11,7 @@ I decided that a general solution for an arbitrary program seemed computationall
 
 I then manually decompiled the first section, which sets the register values. If $A_0$ is the value stored in register A before any operations are applied, the final values in the registers are given by
 ```math
-A_1 = \lfloor A_0 / 8 \rfloor \\
-B_1 = f_1(A_0) \\
-C_1 = f_2(A_0)
+\begin{matrix} A_1 = \lfloor A_0 / 8 \rfloor \\ B_1 = f_1(A_0) \\ C_1 = f_2(A_0) \end{matrix}
 ```
 This has several interesting properties. First, we see that the value in register A decreases by a factor of 8 every iteration. This means that if our program outputs 16 values, that the initial value for A must lie between $2^{15}$ and $2^{16}$. This is obviously too large a range to explore with brute force, but this is a good starting point.
 
