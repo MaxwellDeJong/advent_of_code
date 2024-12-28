@@ -10,9 +10,11 @@ I decided that a general solution for an arbitrary program seemed computationall
   3. A conditional loop to return to the beginning of the program, where the condition depends only on the value in register A.
 
 I then manually decompiled the first section, which sets the register values. If $A_0$ is the value stored in register A before any operations are applied, the final values in the registers are given by
-$$ A_1 = A_0 // 8$$
-$$ B_1 = f_1(A_0) $$
-$$ C_1 = f_2(A_0) $$
+```math
+A_1 = A_0 // 8
+B_1 = f_1(A_0)
+C_1 = f_2(A_0)
+```
 This has several interesting properties. First, we see that the value in register A decreases by a factor of 8 every iteration. This means that if our program outputs 16 values, that the initial value for A must lie between $2^{15}$ and $2^{16}$. This is obviously too large a range to explore with brute force, but this is a good starting point.
 
 Second, we see that the output value depends on the value in register B, which can be written as a function exclusively of the initial value in register A. So knowledge of the initial value of the A register before the iteration is enough to completely determine the output value.
